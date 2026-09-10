@@ -1297,7 +1297,10 @@ async function syncNow(showToast) {
     refreshAfterSync();
     if (showToast) toast('✓ 已同步');
   } catch (e) {
-    if (showToast) toast('同步失败：' + e.message); else console.error('[sync]', e);
+    const msg = (e && e.message) ? e.message : String(e);
+    if (showToast) toast('同步失败：' + msg); else console.error('[sync]', e);
+    const st = document.getElementById('syncStatus');
+    if (st) st.innerHTML = '⚠️ 同步失败：<b style="color:var(--warn)">' + esc(msg) + '</b>';
   } finally { _syncing = false; }
 }
 function updateSyncUI() {

@@ -1,5 +1,5 @@
 /* Fluency7 Service Worker —— 离线外壳 + 及时更新 */
-const CACHE = 'f7-v1';
+const CACHE = 'f7-v2';
 const SHELL = [
   '.',
   'index.html',
@@ -49,7 +49,16 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // 静态资源：cache-first，同时后台更新
+  // app.js：network-first —— 代码必须保持最新，避免旧版本逻辑（如同步 bug）被缓存卡住
+  if (/\/js\/app\.js($|\?)/.test(url.pathname)) {
+    e.respondWith(
+      fetch(req).then(res => { const cp = res.clone(); caches.open(CACHE).then(c => c.put(req, cp)); return res; })
+        .catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // 其它静态资源（css/数据/图标）：cache-first，同时后台更新
   e.respondWith(
     caches.match(req).then(cached => {
       const net = fetch(req).then(res => {
