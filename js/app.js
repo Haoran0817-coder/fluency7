@@ -1198,9 +1198,14 @@ async function gistPull() {
   let g;
   try { g = await gistReq('GET', '/gists/' + SYNC.gistId); }
   catch (e) {
-    // ID 失效（仓库被删/不属于本账号）→ 清空后重新发现
-    if (/404/.test(e.message)) { SYNC.gistId = ''; saveSync(); await safeDiscover(); }
-    return null;
+    // ID 失效（仓库被删/不属于本账号）→ 清空后重新发现，并真正拉取新仓库内容
+    if (/404/.test(e.message)) {
+      SYNC.gistId = ''; saveSync();
+      await safeDiscover();
+      if (!SYNC.gistId) return null;
+      try { g = await gistReq('GET', '/gists/' + SYNC.gistId); }
+      catch (e2) { return null; }
+    } else return null;
   }
   const f = g.files && g.files[GIST_FILE];
   if (!f || !f.content) return null;
