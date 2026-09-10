@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Fluency7 · 英语听读冲刺训练</title>
+<meta name="theme-color" content="#0b0f16">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fluency7">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">F7</div>
+    <div class="brand-txt">
+      <h1>Fluency7</h1>
+      <p>7 天听懂美国人 · 听读冲刺训练</p>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="streak" title="连续训练天数">
+      <span class="flame">🔥</span><b id="streakNum">0</b><span class="unit">天</span>
+    </div>
+    <div class="daychip" id="dayChip">Day 1</div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-view="home"><span>🏠</span>今日</button>
+  <button class="tab" data-view="listen"><span>🎧</span>精听</button>
+  <button class="tab" data-view="blitz"><span>⚡</span>单词突击</button>
+  <button class="tab" data-view="vault"><span>📖</span>生词本<em id="vaultBadge">0</em></button>
+  <button class="tab" data-view="decoder"><span>🗣️</span>美语解码</button>
+  <button class="tab" data-view="linking"><span>🔗</span>连读实验室</button>
+  <button class="tab" data-view="ielts"><span>📋</span>雅思筛查</button>
+  <button class="tab" data-view="settings"><span>⚙️</span>设置</button>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ 今日 ============ -->
+  <section class="view active" id="view-home">
+    <div class="hero">
+      <div class="hero-l">
+        <h2 id="heroTitle">第 1 天 · 打地基：功能词 + 音变规则</h2>
+        <p id="heroDesc">今天的目标是让耳朵熟悉英语的真实节奏。美国人说话时，功能词几乎全部被弱读、连读、吞音，这是"每个词都认识却听不懂"的唯一原因。</p>
+        <div class="hero-tags" id="heroGoals"></div>
+      </div>
+      <div class="hero-r">
+        <div class="ring" id="dayRing" style="--p:0">
+          <div class="ring-in"><b id="ringPct">0</b><span>%</span></div>
+        </div>
+        <div class="ring-cap">今日完成度</div>
+      </div>
+    </div>
+
+    <div class="statgrid">
+      <div class="stat"><div class="stat-n" id="stNew">0</div><div class="stat-l">今日新学</div></div>
+      <div class="stat"><div class="stat-n" id="stDue">0</div><div class="stat-l">待复习</div></div>
+      <div class="stat"><div class="stat-n" id="stMaster">0</div><div class="stat-l">已掌握</div></div>
+      <div class="stat"><div class="stat-n" id="stMin">0</div><div class="stat-l">训练分钟</div></div>
+      <div class="stat"><div class="stat-n" id="stVocab">0</div><div class="stat-l">生词本</div></div>
+      <div class="stat"><div class="stat-n" id="stTotal">0</div><div class="stat-l">累计词次</div></div>
+    </div>
+
+    <div class="cards2">
+      <div class="card">
+        <div class="card-h"><h3>今日任务清单</h3><button class="mini" id="resetDay">重来</button></div>
+        <ul class="tasks" id="taskList"></ul>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>7 天冲刺路线</h3></div>
+        <ol class="plan" id="planList"></ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>推荐材料</h3><span class="hint">按今天的计划挑一篇开始</span></div>
+      <div class="lesrec" id="recLessons"></div>
+    </div>
+  </section>
+
+  <!-- ============ 精听 ============ -->
+  <section class="view" id="view-listen">
+    <div class="listen-layout">
+      <aside class="les-side">
+        <div class="filt" id="lesFilter">
+          <button class="f-btn active" data-cat="all">全部</button>
+          <button class="f-btn" data-cat="daily">日常美语</button>
+          <button class="f-btn" data-cat="ielts">雅思</button>
+          <button class="f-btn" data-cat="toefl">托福</button>
+        </div>
+        <div class="les-list" id="lesList"></div>
+      </aside>
+
+      <div class="les-main">
+        <div class="les-head">
+          <div>
+            <h2 id="lesTitle">选择一篇材料</h2>
+            <p id="lesMeta">左侧挑一篇开始精听</p>
+          </div>
+          <div class="les-tools">
+            <button class="btn ghost" id="btnPlayAll">▶ 连续播放</button>
+            <button class="btn ghost" id="btnStop">■ 停止</button>
+          </div>
+        </div>
+
+        <div class="ctrlbar">
+          <label class="ctl">速度
+            <select id="rateSel">
+              <option value="0.6">0.6x 超慢</option>
+              <option value="0.75">0.75x 慢</option>
+              <option value="0.9">0.9x</option>
+              <option value="1" selected>1.0x 常速</option>
+              <option value="1.15">1.15x</option>
+              <option value="1.3">1.3x 快</option>
+            </select>
+          </label>
+          <label class="ctl sw"><input type="checkbox" id="hideEn"> 隐藏英文（先听写）</label>
+          <label class="ctl sw"><input type="checkbox" id="hideZh" checked> 显示中文</label>
+          <label class="ctl sw"><input type="checkbox" id="showTip" checked> 显示音变提示</label>
+          <label class="ctl sw"><input type="checkbox" id="loopOne"> 单句循环</label>
+        </div>
+
+        <div class="lines" id="lines">
+          <div class="empty">👈 从左边选一篇材料开始</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 单词突击 ============ -->
+  <section class="view" id="view-blitz">
+    <div class="blitz-top">
+      <div class="modes" id="modeSel">
+        <button class="m-btn active" data-mode="card">🃏 闪卡</button>
+        <button class="m-btn" data-mode="listen">🔊 听音选词</button>
+        <button class="m-btn" data-mode="spell">⌨️ 听写拼写</button>
+        <button class="m-btn" data-mode="cloze">✍️ 例句填空</button>
+        <button class="m-btn" data-mode="rush">🚀 速刷模式</button>
+      </div>
+      <div class="decksel">
+        <label>词库
+          <select id="deckSel">
+            <option value="all">全部（混合）</option>
+            <option value="core">① 日常核心</option>
+            <option value="daily">② 日常进阶</option>
+            <option value="ielts">③ 雅思学术</option>
+            <option value="toefl">④ 托福学术</option>
+            <option value="b1">⑤ 基础高频词 (B1)</option>
+            <option value="b2">⑥ 中级常用词 (B2)</option>
+            <option value="b3">⑦ 进阶词汇 (B3)</option>
+            <option value="ieltsfull">⑧ 雅思全量词库</option>
+            <option value="vault">📖 我的生词本</option>
+            <option value="due">⏰ 仅待复习</option>
+            <option value="weak">⚠ 仅未掌握</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="quizbox">
+      <div class="qbar">
+        <div class="qbar-l"><span id="qPos">0 / 0</span> <span class="sep">·</span> <span id="qDeck">全部</span></div>
+        <div class="qbar-r">
+          <span class="qstat">✅ <b id="qRight">0</b></span>
+          <span class="qstat">❌ <b id="qWrong">0</b></span>
+          <button class="mini" id="qRestart">重启一轮</button>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="empty">选择模式和词库，点开始</div>
+      </div>
+
+      <div class="qactions" id="qActions"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>本轮结束后报告</h3></div>
+      <div class="report" id="report"><span class="muted">还没有数据，先刷一轮。</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 生词本 ============ -->
+  <section class="view" id="view-vault">
+    <div class="vault-top">
+      <input type="search" id="vSearch" placeholder="搜索生词或释义…">
+      <select id="vSort">
+        <option value="time">按添加时间</option>
+        <option value="alpha">按字母</option>
+        <option value="weak">按掌握度（弱→强）</option>
+      </select>
+      <button class="btn ghost" id="vExport">导出 CSV</button>
+      <button class="btn ghost" id="vExportAnki">📥 导出 Anki</button>
+      <button class="btn ghost" id="vDrill">🔊 转入突击训练</button>
+      <button class="btn danger-ghost" id="vClear">清空</button>
+    </div>
+    <div class="batch-panel">
+      <span class="bp-title">📦 分批次背诵</span>
+      <span class="bp-desc">从生词本里挑未掌握的词，自己定每批数量，一批一批刷完</span>
+      <div class="bp-ctl">
+        <label>每批
+          <select id="vBatchSize">
+            <option value="20">20 词</option>
+            <option value="30" selected>30 词</option>
+            <option value="50">50 词</option>
+            <option value="100">100 词</option>
+          </select>
+        </label>
+        <button class="btn" id="vBatch">▶ 开始本批背诵</button>
+      </div>
+      <span class="bp-info" id="vBatchInfo"></span>
+    </div>
+    <div class="vault-list" id="vaultList"></div>
+  </section>
+
+  <!-- ============ 美语解码 ============ -->
+  <section class="view" id="view-decoder">
+    <div class="card">
+      <div class="card-h"><h3>为什么你听不懂美国人</h3></div>
+      <div class="explain">
+        <p><b>核心事实：</b>美国人说话不是"一个个单词念出来"，而是一条连续的音流。主要现象有四类：</p>
+        <div class="phen">
+          <div class="ph"><b>连读 Linking</b><span>前词辅音 + 后词元音 → 拼在一起读。turn <i>off</i> → "tur-noff"</span></div>
+          <div class="ph"><b>弱读 Reduction</b><span>功能词的元音塌成 /ə/。to /tuː/ → /tə/，for /fɔːr/ → /fər/</span></div>
+          <div class="ph"><b>缩读 Contraction</b><span>gonna / wannа / kinda / whatcha / lemme…</span></div>
+          <div class="ph"><b>失爆 Flap &amp; Stop</b><span>t 在两元音间变成 d 音：water → "wader"；词尾 t 只做口型不爆破：don't</span></div>
+        </div>
+        <p class="tip">训练方法：先用 0.6x 听清每个音，再用 1.0x 听同一句，最后<b>影子跟读</b>（落后 0.5 秒重复）。每天 20 分钟，一周后耳朵会明显开窍。</p>
+      </div>
+    </div>
+
+    <div class="dec-filt" id="decFilter">
+      <button class="f-btn active" data-t="all">全部</button>
+      <button class="f-btn" data-t="contract">缩读</button>
+      <button class="f-btn" data-t="link">连读</button>
+      <button class="f-btn" data-t="reduce">弱读</button>
+      <button class="f-btn" data-t="slang">高频口语</button>
+    </div>
+    <div class="dec-list" id="decList"></div>
+  </section>
+
+  <!-- ============ 连读实验室 ============ -->
+  <section class="view" id="view-linking">
+    <div class="card">
+      <div class="card-h"><h3>听不清，是因为它根本不是那样读的</h3><span class="hint" id="lkProg">0 / 0</span></div>
+      <p class="lkintro">每一条都会给你：<b>书面写法</b>（课本上的）→ <b>实际读音</b>（美国人嘴里出来的）→ <b>音标</b> → <b>要点</b>。先用 0.6x 把每个音听实，再切常速，最后跟读。</p>
+      <div class="lkmodes" id="lkMode">
+        <button class="m-btn active" data-m="contrast">🔍 对照听（慢→快）</button>
+        <button class="m-btn" data-m="dictation">⌨️ 听写实际读音</button>
+        <button class="m-btn" data-m="choose">🎯 听辨选择</button>
+        <button class="m-btn" data-m="shadow">🗣 影子跟读</button>
+        <button class="m-btn" data-m="dialog">💬 对话连读</button>
+      </div>
+      <div class="lkfilt" id="lkFilter">
+        <button class="f-btn active" data-c="all">全部</button>
+        <button class="f-btn" data-c="contract">缩读</button>
+        <button class="f-btn" data-c="reduce">弱读</button>
+        <button class="f-btn" data-c="link">连读</button>
+        <button class="f-btn" data-c="flap">浊化失爆</button>
+        <button class="f-btn" data-c="assim">同化</button>
+        <button class="f-btn" data-c="fast">综合串读</button>
+        <button class="f-btn" data-c="weak">🔴 薄弱 <em id="lkWeakN">0</em></button>
+      </div>
+
+      <div class="lkstage" id="lkStage"></div>
+      <div class="qactions" id="lkActions"></div>
+    </div>
+  </section>
+
+  <!-- ============ 雅思筛查 ============ -->
+  <section class="view" id="view-ielts">
+    <div class="card">
+      <div class="card-h"><h3>📋 雅思全量词库 · 第一遍筛查</h3>
+        <button class="mini" id="ieltsReset">重置筛查进度</button></div>
+      <p class="lkintro">把整本雅思词库先快速过一遍：看到单词凭印象点 <b>认识</b> 或 <b>不认识</b>。不认识的会自动进生词本，之后在「生词本」里用上面的「分批次背诵」一批一批刷。每天目标 <b id="ieltsGoalTxt">1000</b> 词，筛完即止、进度自动保存。</p>
+      <div class="ielts-prog">
+        <div class="ip-row"><span>总进度</span><div class="bar"><i id="ieltsBarAll"></i></div><b id="ieltsAllTxt">0 / 0</b></div>
+        <div class="ip-row"><span>今日</span><div class="bar bar-today"><i id="ieltsBarToday"></i></div><b id="ieltsTodayTxt">0 / 1000</b></div>
+        <div class="ip-stat">
+          <span>✅ 已认识 <b id="ieltsKnown">0</b></span>
+          <span>📥 已入生词本 <b id="ieltsUnk">0</b></span>
+          <span>⏳ 剩余 <b id="ieltsLeft">0</b></span>
+        </div>
+      </div>
+    </div>
+    <div class="ielts-stage" id="ieltsStage"></div>
+  </section>
+
+  <!-- ============ 设置 ============ -->
+  <section class="view" id="view-settings">
+    <div class="card">
+      <div class="card-h"><h3>发音引擎</h3></div>
+      <div class="setrow">
+        <div class="set-l"><b>首选发音来源</b><p>「朗文真人美音」取自朗文词典(LDOCE)在线美音，是最标准的美式发音（经本地代理获取）；「浏览器语音」可调语速、可离线。</p></div>
+        <select id="setEngine">
+          <option value="dict">朗文真人美音（推荐）</option>
+          <option value="browser">浏览器语音（可调速）</option>
+          <option value="auto">智能：单词用朗文、句子用浏览器</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>浏览器语音 (en-US)</b><p>优先选带 Natural / Online / Google 标记的，质量最好。</p></div>
+        <select id="setVoice"><option>加载中…</option></select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>试听</b></div>
+        <button class="btn" id="testSpeak">🔊 The weather's really nice today</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>学习计划</h3></div>
+      <div class="setrow">
+        <div class="set-l"><b>每日新词量</b><p>一周想冲 500+ 词就选 120 或更高。速刷模式下 300 词约 40 分钟。</p></div>
+        <select id="setDaily">
+          <option value="40">40 / 天（轻松）</option>
+          <option value="80" selected>80 / 天（标准）</option>
+          <option value="120">120 / 天（冲刺）</option>
+          <option value="200">200 / 天（猛人）</option>
+          <option value="300">300 / 天（极限）</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>每日精听目标</b></div>
+        <select id="setListen">
+          <option value="1">1 篇</option>
+          <option value="2" selected>2 篇</option>
+          <option value="3">3 篇</option>
+          <option value="4">4 篇</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>自动加入生词本</b><p>在精听里点单词、在突击里点"不认识"时自动收藏。</p></div>
+        <select id="setAuto">
+          <option value="1">开</option>
+          <option value="0">关</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>雅思筛查每日目标</b><p>「雅思筛查」每天筛多少个词，达标后还能继续超额。8000 词想 2 天背完就选 4000/天。</p></div>
+        <select id="setIeltsDaily">
+          <option value="200">200 / 天</option>
+          <option value="500">500 / 天</option>
+          <option value="1000">1000 / 天（猛冲）</option>
+          <option value="1500">1500 / 天</option>
+          <option value="2000">2000 / 天</option>
+          <option value="3000">3000 / 天</option>
+          <option value="4000" selected>4000 / 天（2 天背完 8000）</option>
+          <option value="8000">8000 / 天（1 天一遍过）</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>重新开始第 1 天</b><p>保留生词本与已掌握记录，只重置每日进度。</p></div>
+        <button class="btn danger-ghost" id="resetPlan">重置计划</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>数据</h3></div>
+      <div class="setrow">
+        <div class="set-l"><b>本地存储</b><p>所有进度存在浏览器 localStorage，不上传任何服务器。换浏览器/清缓存会丢失，可导出备份。</p></div>
+        <div>
+          <button class="btn ghost" id="expAll">导出备份 JSON</button>
+          <button class="btn ghost" id="impAll">导入备份</button>
+          <input type="file" id="impFile" accept=".json" hidden>
+        </div>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>关于教材</b></div>
+        <p class="muted small">听力材料为按雅思 / 托福官方题型与话题原创编写的仿真材料（Section 1-4 生活与学术场景、校园服务对话、学术讲座），非出版真题。词汇取自通用高频词表与学术词表（AWL/学术核心词），不涉及版权内容。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h3>☁️ 云同步（手机 ↔ 电脑）</h3></div>
+      <div class="setrow">
+        <div class="set-l"><b>同步方式</b><p><b>局域网</b>：零账号，数据只在你家 WiFi 内传输，不经任何第三方（需电脑开机且手机与电脑同一 WiFi）。<b>GitHub</b>：随时随地可同步，需要一个 GitHub 账号的 token。</p></div>
+        <select id="syncMode">
+          <option value="lan" selected>局域网直连（零账号·推荐）</option>
+          <option value="gist">GitHub Gist（需 token）</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>电脑地址</b><p>手机端填电脑的局域网地址（服务器启动时会在窗口里显示，形如 <code>192.168.x.x:8899</code>）。电脑上打开的话点右边「用本机」即可。</p></div>
+        <div>
+          <input type="text" id="syncLanHost" placeholder="192.168.1.100:8899" class="sync-input">
+          <button class="btn ghost" id="syncUseLocal">用本机</button>
+        </div>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>同步码</b><p>两端填<b>同一个</b>任意字符串（比如 <code>abc123</code>）当作口令，防止同网他人读写你的数据。谁先同步谁就"认领"这个同步码，之后不一致会被拒绝。</p></div>
+        <input type="text" id="syncKey" placeholder="两端填同一个口令" class="sync-input">
+      </div>
+      <div class="setrow" id="syncLanHint">
+        <div class="set-l"><b>使用步骤</b></div>
+        <p class="muted small">① 电脑上启动 <code>start.bat</code>（服务器窗口会显示手机可访问的地址）② 手机连同一 WiFi，浏览器打开那个地址 ③ 两端填相同同步码 → 点「立即同步」→ 开「自动同步」。之后加生词会自动互相同步。</p>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>GitHub Token</b><p>用于读写你自己的<b>私有 gist</b>。去 GitHub → Settings → Developer settings → Personal access tokens → Generate new token，只勾 <code>gist</code> 权限。Token 仅存你本机浏览器，不会上传给任何人。</p></div>
+        <div>
+          <input type="password" id="syncToken" placeholder="ghp_xxx…" class="sync-input">
+          <button class="btn ghost" id="syncSaveToken">保存</button>
+        </div>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>API 地址（可选）</b><p>若访问 GitHub 慢或被墙，可填镜像代理，例如 <code>https://gh-proxy.com/https://api.github.com</code>（注意：token 会经该代理，请只用可信代理）。默认 <code>https://api.github.com</code> 即可。</p></div>
+        <input type="text" id="syncBase" placeholder="https://api.github.com" class="sync-input wide">
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>同步操作</b><p>「立即同步」会拉取另一端数据并<b>按词合并</b>，再把合并结果推回，两端生词本 / 进度自动一致。「自动同步」开启后，每次在任一端改动（加生词、标认识等）会延迟 1.5s 自动同步。</p></div>
+        <div>
+          <button class="btn" id="syncNow">🔄 立即同步</button>
+          <button class="btn ghost" id="syncAutoBtn">自动同步：开</button>
+        </div>
+      </div>
+      <div class="setrow">
+        <div class="set-l"><b>状态</b></div>
+        <div id="syncStatus" class="muted small">未配置</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="modal-x" id="modalX">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="js/data-core.js"></script>
+<script src="js/data-daily.js"></script>
+<script src="js/data-ielts.js"></script>
+<script src="js/data-toefl.js"></script>
+<script src="js/data-lessons.js"></script>
+<script src="js/data-lessons-extra.js"></script>
+<script src="js/data-lessons-extra2.js"></script>
+<script src="js/data-decoder.js"></script>
+<script src="js/data-linking.js"></script>
+<script src="js/data-linking-dialog.js"></script>
+<script src="js/data-big.js"></script>
+<script src="js/data-ielts-full.js"></script>
+<script src="js/app.js"></script>
+<div id="swUpdate" class="sw-update" hidden>发现新版本 · <a id="swReload">点击刷新</a></div>
+<script>
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').then(function (reg) {
+        if (reg) {
+          reg.addEventListener('updatefound', function () {
+            var nw = reg.installing;
+            if (!nw) return;
+            nw.addEventListener('statechange', function () {
+              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                var b = document.getElementById('swUpdate');
+                if (b) b.hidden = false;
+              }
+            });
+          });
+        }
+      }).catch(function () {});
+      var reload = document.getElementById('swReload');
+      if (reload) reload.addEventListener('click', function () {
+        if (navigator.serviceWorker.controller)
+          navigator.serviceWorker.controller.postMessage('SKIP_WAITING');
+        location.reload();
+      });
+      navigator.serviceWorker.addEventListener('controllerchange', function () { location.reload(); });
+    });
+  }
+</script>
+</body>
+</html>

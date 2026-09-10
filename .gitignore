@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+server.py
+sync_state.json
+audio_cache/
+gen_*.py
+test_*.js
+build_*.js
+dbg.js
+*.log

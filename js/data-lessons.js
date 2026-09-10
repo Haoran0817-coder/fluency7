@@ -1,0 +1,311 @@
+/* 听力材料：日常美语 6 篇 + 雅思 6 篇 + 托福 6 篇
+   s=英文原句 z=中文 tip=音变/连读提示（美式真实语流） */
+window.LESSONS = [
+/* ================= 日常美语 ================= */
+{id:"d1",cat:"daily",lvl:1,title:"Ordering Coffee",zh:"咖啡店点单",
+desc:"最快让你开口的一课。咖啡店是美国人日常对话密度最高的地方，语速快、省略多。",
+lines:[
+{s:"Hi there, what can I get for you today?",z:"嗨，今天需要点什么？",tip:"what can I → whadda I；get for you 连读成 ge-cher-you"},
+{s:"Could I get a large iced latte with oat milk?",z:"我要一杯大杯冰拿铁，换燕麦奶。",tip:"iced latte 中 iced 的 t 常被吞掉，听着像 ice' latte"},
+{s:"Sure thing. Would you like anything to eat with that?",z:"好的。需要配点吃的吗？",tip:"would you → wud-joo；anything 在口语里常读成 anythin'"},
+{s:"Hmm, I'll just grab a croissant, thanks.",z:"嗯，就拿个可颂吧，谢谢。",tip:"just grab 中 just 的 t 失爆，只做口型就滑到 grab"},
+{s:"For here or to go?",z:"在这儿喝还是带走？",tip:"超高频三连音：fer here or t'go，or 弱读成 /ər/"},
+{s:"To go, please.",z:"带走，谢谢。"},
+{s:"That'll be seven fifty. You can tap your card right here.",z:"一共七块五。在这儿刷卡就行。",tip:"that'll be 中 'll 几乎听不见；tap your 连读成 ta-pyer"},
+{s:"Here you go. I'll have your drink ready in just a sec.",z:"给你。您的饮料马上就好。",tip:"just a sec = just a second，sec 极常用"},
+{s:"Thanks a lot. Have a good one!",z:"太感谢了。祝你愉快！",tip:"Have a good one 是美式万能告别语，one 代指 day"},
+{s:"You too! Thanks for coming in.",z:"你也是！谢谢光临。"}
+]},
+
+{id:"d2",cat:"daily",lvl:1,title:"Small Talk with a Neighbor",zh:"和邻居寒暄",
+desc:"美国人最爱的 small talk 全套模板：天气、周末、抱怨、礼貌收尾。",
+lines:[
+{s:"Hey! How's it going? Long time no see.",z:"嘿！最近怎么样？好久不见。",tip:"How's it going 实际读 /haʊzɪ ɡoʊɪn/，going 的 g 常弱化"},
+{s:"Not bad, not bad. Just been super busy with work lately.",z:"还行还行。就是最近工作特别忙。",tip:"not bad 中第一个 t 不爆破，直接接 b"},
+{s:"I hear you. Hey, did you catch the game last night?",z:"我懂。对了，昨晚比赛你看了吗？",tip:"I hear you = 我理解你（不是「我听见你」）；did you → di-joo"},
+{s:"Nah, I missed it. How'd it end up?",z:"没，我错过了。最后结果怎么样？",tip:"Nah = no 的口语；How'd it 连读成 how-di-t"},
+{s:"We crushed 'em. It wasn't even close.",z:"我们碾压了他们。根本没悬念。",tip:"'em = them 的弱读；wasn't 的 t 完全不发音"},
+{s:"No way! I gotta watch the highlights later.",z:"不会吧！我待会儿得看看集锦。",tip:"gotta = got to，后面动词直接接"},
+{s:"So, are you guys doing anything fun this weekend?",z:"对了，你们这周末有什么好玩的安排吗？",tip:"are you → ya；doing anything 连成 doin'-anythin'"},
+{s:"We're thinking about hitting the beach, if the weather holds up.",z:"我们在想去海边，要是天气好的话。",tip:"hitting 中 tt 浊化成 d 音：hidding"},
+{s:"That sounds awesome. Well, I'll let you get back to it.",z:"听起来太棒了。行，我不打扰你了。",tip:"let you → le-cha；get back to it 连读成一串"},
+{s:"Alright, see you around!",z:"好的，回头见！",tip:"see you 常读成 See-ya"}
+]},
+
+{id:"d3",cat:"daily",lvl:2,title:"At the Doctor's Office",zh:"看医生",
+desc:"看病场景的标准问答，语速中等偏快，含大量医疗常用表达。",
+lines:[
+{s:"Good morning. What brings you in today?",z:"早上好。今天哪里不舒服？",tip:"what brings you in 是医生开场白，brings you 连读"},
+{s:"I've been feeling under the weather for about three days now.",z:"我大概不舒服三天了。",tip:"under the weather = 身体不适，高频习语"},
+{s:"Any fever, chills, or body aches?",z:"有发烧、发冷或浑身酸痛吗？"},
+{s:"Yeah, I had a low-grade fever last night, like a hundred.",z:"有，昨晚有点低烧，大概一百度（华氏）。",tip:"美国体温用华氏，100°F≈37.8℃"},
+{s:"Hmm. Does your throat feel sore when you swallow?",z:"嗯。吞咽的时候嗓子疼吗？"},
+{s:"A little bit. It's not terrible, but it's definitely there.",z:"有一点。不算太糟，但确实疼。"},
+{s:"Sounds like a mild viral infection. Nothing to worry about.",z:"听上去像轻微的病毒感染。不用担心。",tip:"sounds like 中 ds+l 直接连，nothing 读成 nuthin'"},
+{s:"So I don't need antibiotics or anything?",z:"那我不需要吃抗生素什么的吧？"},
+{s:"Nope. Just rest, drink plenty of fluids, and take it easy.",z:"不用。多休息、多喝水、别累着就行。",tip:"plenty of 连读成 plennea；take it easy 中 take it 连成 tay-kit"},
+{s:"Got it. Should I call back if it gets worse?",z:"明白了。如果加重了我需要再打过来吗？",tip:"got it 中 t 浊化成 d：god-dit"},
+{s:"Absolutely. Give us a call if the fever goes above a hundred and two.",z:"当然。如果体温超过102度就给我们打电话。"}
+]},
+
+{id:"d4",cat:"daily",lvl:2,title:"Apartment Hunt",zh:"找房子・看房",
+desc:"租房全流程对话：问价格、问设施、问押金、砍价。",
+lines:[
+{s:"Thanks for showing me around. It's a nice place.",z:"谢谢带我看房。这地方不错。",tip:"showing me around 连读流畅，around 的 d 轻"},
+{s:"Glad you like it. It just went on the market last week.",z:"很高兴你喜欢。上周刚挂出来。",tip:"just went 中 just 的 t 失爆"},
+{s:"So, what's the rent again? And is parking included?",z:"再确认一下，房租多少？停车包含吗？"},
+{s:"It's eighteen hundred a month, and yeah, one spot's included.",z:"一千八一个月，包含，送一个车位。",tip:"eighteen hundred 是美式说法，不说 one thousand eight hundred"},
+{s:"Are utilities covered, or is that on top of the rent?",z:"水电包吗，还是要另付？",tip:"on top of 连读成 on-toppa"},
+{s:"Water and trash are included. You'd pay electric and internet.",z:"水和垃圾费包含。电和网络你自己付。",tip:"You'd pay 中 'd 几乎听不见"},
+{s:"And the deposit? I'm guessing first and last month?",z:"押金呢？我猜是首尾两个月的？"},
+{s:"Just first month plus a five hundred security deposit.",z:"只要首月租金加五百押金。"},
+{s:"Is the rent negotiable at all? I'd sign a two-year lease.",z:"房租有商量余地吗？我可以签两年。",tip:"at all 连读成 a-tall"},
+{s:"For a two-year lease, I could do seventeen fifty.",z:"签两年的话，我可以做到1750。"},
+{s:"That works for me. Let me sleep on it and text you tomorrow.",z:"可以。我考虑一晚，明天发消息给你。",tip:"sleep on it = 考虑一晚上，超高频"}
+]},
+
+{id:"d5",cat:"daily",lvl:2,title:"Airport Check-in",zh:"机场值机",
+desc:"机场广播与柜台对话，语速快、信息密集，练数字和字母听辨。",
+lines:[
+{s:"Next in line. May I see your ID and booking reference?",z:"下一位。请出示您的证件和订票号。",tip:"连读密集：see your → see-yer"},
+{s:"Here you go. I'm flying to Denver, flight UA 4-8-2.",z:"给你。我飞丹佛，UA482航班。"},
+{s:"Great. Are you checking any bags today?",z:"好的。今天有行李要托运吗？"},
+{s:"Just one. This carry-on stays with me.",z:"就一件。这个随身包我自己带。",tip:"just one 连读成 jus-won"},
+{s:"Alright, please place it on the scale. — Looks good, forty-eight pounds.",z:"好的，请放秤上。—— 没问题，48磅。"},
+{s:"Any liquids or electronics in there?",z:"里面有液体或电子产品吗？"},
+{s:"Just my laptop and a phone charger.",z:"就一台笔记本和一个手机充电器。"},
+{s:"Perfect. You're all set. Window or aisle?",z:"好了，办好了。靠窗还是过道？",tip:"all set = 全部搞定，机场/餐厅超高频"},
+{s:"Window, if you've got one left.",z:"靠窗，如果还有的话。",tip:"you've got 常弱化成 ya-got"},
+{s:"You're in 14A. Boarding starts at ten forty at gate B7.",z:"您的座位是14A。10:40 在 B7 登机口开始登机。",tip:"数字时间 ten forty 不说 forty minutes past ten"},
+{s:"Thanks. Is the flight on time?",z:"谢谢。航班准点吗？"},
+{s:"So far, yes. We'll announce any delays on the board.",z:"目前是准点的。如有延误我们会在屏幕上通知。"}
+]},
+
+{id:"d6",cat:"daily",lvl:3,title:"Friday at the Office",zh:"办公室周五下午",
+desc:"职场口语：汇报进度、推活、约周末。连读和弱读密度最高的一篇。",
+lines:[
+{s:"Hey, you got a sec? I wanted to run something by you.",z:"嘿，有空吗？我想跟你说个事儿。",tip:"got a sec 中 got a 连读成 godda"},
+{s:"Sure, shoot. I was about to head out though.",z:"当然，说吧。不过我正准备走了。",tip:"shoot = go ahead；about to 在口语里约等于 abouta"},
+{s:"It's about the Q3 report. I don't think I can hit Friday's deadline.",z:"是关于第三季度报告。我觉得周五截止日赶不出来。",tip:"about the 中 t 浊化；don't think 的 t 吞掉"},
+{s:"How far along are you? I thought you were almost done.",z:"你做到哪一步了？我以为你快做完了。",tip:"out you 连读；almost 的 t 不发音：almos'"},
+{s:"I'm maybe seventy percent there. The data's still messy.",z:"大概完成七成。数据还很乱。"},
+{s:"Okay. What if we push it to Monday morning?",z:"好吧。要不我们推到周一上午？"},
+{s:"That'd be huge. I just don't wanna turn in something half-baked.",z:"那太好了。我只是不想交个半成品。",tip:"don't wanna 连读；half-baked = 半成品/没想周全"},
+{s:"Totally fair. Just shoot me an email so it's on the record.",z:"完全合理。发我封邮件，好留个记录。"},
+{s:"Will do. So, any plans for the weekend?",z:"好的。对了，周末有什么计划？",tip:"Will do = 会的（答应做事）；so 用于换话题"},
+{s:"Nothing crazy. Probably just catch up on sleep and grab brunch.",z:"没啥特别的。大概补补觉、吃个早午餐。"},
+{s:"Nice. Have a good one, man. See you Monday.",z:"不错。周末愉快，兄弟。周一见。"}
+]},
+
+/* ================= 雅思 IELTS ================= */
+{id:"i1",cat:"ielts",lvl:2,title:"IELTS S1 · Booking a Weekend Tour",zh:"雅思 Section 1：预订周末游",
+desc:"雅思听力 Section 1 经典填空场景：旅行社电话预订，考数字、日期、拼写。",
+lines:[
+{s:"Good morning, Sunrise Travel. How may I help you?",z:"早上好，日出旅行社。请问需要什么帮助？",tip:"英式/美式混合音，语速中速"},
+{s:"Hello, I'd like to book a weekend tour for two adults.",z:"你好，我想订一个周末游，两位成人。",tip:"I'd like to 连读成 I'd like-ta"},
+{s:"Certainly. Did you have a particular destination in mind?",z:"好的。您有特别想去的目的地吗？"},
+{s:"We were thinking the coastal route, the one that includes the lighthouse.",z:"我们在考虑海岸线那条，包含灯塔的那个。"},
+{s:"Excellent choice. That tour departs at eight thirty on Saturday morning.",z:"很好的选择。那条线周六早上八点半出发。",tip:"departs at 连读成 depart-sat"},
+{s:"And how long does the whole trip take?",z:"整个行程要多久？"},
+{s:"It's a full-day tour. You'll be back by around six in the evening.",z:"是一日游。大概傍晚六点前回来。"},
+{s:"Is lunch included in the price, or do we need to bring our own?",z:"午餐含在价格里吗，还是要自带？"},
+{s:"Lunch is not included, but there's a stop at a seaside café.",z:"午餐不含，但会在海边咖啡馆停一站。"},
+{s:"Got it. And what's the cost per person?",z:"明白。每人多少钱？"},
+{s:"It's sixty-five dollars each, or a hundred and twenty for a couple.",z:"每人65美元，情侣价120。"},
+{s:"Fine. Could I pay by card over the phone?",z:"好的。我可以电话刷卡支付吗？"},
+{s:"Of course. May I take your full name and contact number?",z:"当然。请留下您的全名和联系电话。",tip:"常考拼写：字母逐个念，如 B as in boy"}
+]},
+
+{id:"i2",cat:"ielts",lvl:2,title:"IELTS S2 · Museum Renovation Notice",zh:"雅思 Section 2：博物馆改造公告",
+desc:"Section 2 独白：单人陈述，语速平稳但信息密集，常考地图与选择题。",
+lines:[
+{s:"Welcome, everyone, and thank you for attending this evening's briefing.",z:"欢迎各位，感谢参加今晚的说明会。"},
+{s:"I'm here to outline the changes taking place at the City Museum.",z:"我来概述一下市博物馆即将进行的变化。"},
+{s:"The renovation will begin in March and is expected to last fourteen months.",z:"改造将于三月开始，预计持续十四个月。",tip:"数字题高频：fourteen vs forty 的辨音"},
+{s:"During this period, the ground floor galleries will remain open.",z:"在此期间，一楼展厅将保持开放。"},
+{s:"However, the second and third floors will be completely closed to visitors.",z:"不过，二层和三层将对游客完全关闭。"},
+{s:"We're adding a new wing on the eastern side of the building.",z:"我们会在建筑东侧新增一个侧厅。"},
+{s:"This will house our collection of nineteenth-century photographs.",z:"这里将陈列我们19世纪的摄影收藏。"},
+{s:"The café will be relocated temporarily to the basement level.",z:"咖啡馆将临时搬到地下一层。"},
+{s:"Please note that the main entrance on Park Street will be inaccessible.",z:"请注意，公园街的正门将无法通行。"},
+{s:"Visitors should use the side entrance on Mill Lane instead.",z:"游客请改走米尔巷的侧门。"},
+{s:"We apologise for any inconvenience and appreciate your patience.",z:"给您带来不便我们深表歉意，感谢您的耐心。"},
+{s:"A detailed floor plan is available at the information desk.",z:"详细平面图可在咨询台领取。"}
+]},
+
+{id:"i3",cat:"ielts",lvl:3,title:"IELTS S3 · Tutorial Discussion",zh:"雅思 Section 3：师生讨论作业",
+desc:"Section 3 多人讨论，语速快、有打断和犹豫，是听力最难的一段。",
+lines:[
+{s:"Come in, Sarah. Have a seat. How's the presentation coming along?",z:"进来吧，Sarah。坐。你的展示准备得怎么样了？",tip:"coming along 连读成一个词的感觉"},
+{s:"Honestly, I'm a bit all over the place with it right now.",z:"说实话，我现在有点乱。"},
+{s:"That's perfectly normal at this stage. What's your topic again?",z:"这个阶段很正常。你的题目是什么来着？"},
+{s:"The impact of remote work on urban transport patterns.",z:"远程办公对城市交通模式的影响。"},
+{s:"Good, that's very relevant. The problem is it's rather broad.",z:"很好，很有现实意义。问题是范围太广了。"},
+{s:"Right, that's what I was worried about.",z:"对，这正是我担心的。"},
+{s:"I'd suggest narrowing it down to one city, or even one district.",z:"我建议缩小到一个城市，甚至一个区。"},
+{s:"That makes sense. Would focusing on bus ridership data work?",z:"有道理。那聚焦公交客流数据可以吗？"},
+{s:"It would, provided you can get reliable figures.",z:"可以，前提是你拿得到可靠数据。",tip:"provided = as long as；would 弱读"},
+{s:"The council publishes that data quarterly, so it should be fine.",z:"议会每季度公布一次数据，应该没问题。"},
+{s:"Excellent. And don't forget to acknowledge your sources.",z:"很好。别忘了注明数据来源。"},
+{s:"Will do. Can I send you a draft by Friday?",z:"会的。我周五前发您草稿可以吗？"},
+{s:"That'd be ideal. Make it Thursday if you can.",z:"那就最好了。能的话周四给我。"}
+]},
+
+{id:"i4",cat:"ielts",lvl:3,title:"IELTS S4 · Urban Green Space",zh:"雅思 Section 4：城市绿地讲座",
+desc:"Section 4 学术独白，句式复杂、专业词汇多，练长句抓主干。",
+lines:[
+{s:"Today's lecture examines the role of green space in urban planning.",z:"今天的讲座探讨绿地在城市规划中的作用。"},
+{s:"For much of the twentieth century, parks were treated as an optional extra.",z:"在二十世纪的大部分时间里，公园被视为可有可无的附加项。"},
+{s:"Urban land was allocated primarily to housing, industry and transport.",z:"城市土地主要分配给住房、工业和交通。"},
+{s:"This prioritisation has had measurable consequences for public health.",z:"这种优先级排序对公共健康产生了可衡量的影响。"},
+{s:"Recent studies indicate that access to green space reduces stress hormones.",z:"近期研究表明，接触绿地能降低压力荷尔蒙。"},
+{s:"Residents living within four hundred metres of a park report higher well-being.",z:"住在公园四百米内的居民，报告了更高的幸福感。"},
+{s:"There is also a measurable effect on air quality and temperature regulation.",z:"对空气质量和温度调节也有可测的影响。"},
+{s:"Trees can lower surrounding temperatures by as much as five degrees.",z:"树木可使周边温度降低多达五度。"},
+{s:"However, the distribution of green space is notably unequal.",z:"然而，绿地的分布明显不均。"},
+{s:"Low-income districts typically have significantly less canopy cover.",z:"低收入社区通常树冠覆盖率明显更低。"},
+{s:"This phenomenon has been termed 'green inequality' by researchers.",z:"研究者将这一现象称为「绿色不平等」。"},
+{s:"Addressing it requires both policy intervention and sustained investment.",z:"解决它需要政策干预和持续投入。"}
+]},
+
+{id:"i5",cat:"ielts",lvl:3,title:"IELTS S4 · Sleep and Memory",zh:"雅思 Section 4：睡眠与记忆",
+desc:"心理学/生物类讲座，常考因果与实验结论，注意信号词 however / consequently。",
+lines:[
+{s:"In today's session, we'll consider the relationship between sleep and memory.",z:"今天这节课，我们将探讨睡眠与记忆的关系。"},
+{s:"For decades, sleep was assumed to be a passive state of rest.",z:"几十年来，睡眠一直被假定为一种被动的休息状态。"},
+{s:"We now understand that the brain remains remarkably active during sleep.",z:"我们现在明白，睡眠期间大脑依然非常活跃。"},
+{s:"The key process here is what researchers call memory consolidation.",z:"这里的关键过程是研究者所说的记忆巩固。"},
+{s:"During deep sleep, information is transferred from short-term to long-term storage.",z:"在深度睡眠中，信息从短期存储转移到长期存储。"},
+{s:"Consequently, participants deprived of sleep perform poorly on recall tasks.",z:"因此，被剥夺睡眠的受试者在回忆任务中表现很差。"},
+{s:"Interestingly, the effect is strongest for factual, rather than procedural, memory.",z:"有趣的是，这种效应对事实性记忆最强，而非程序性记忆。"},
+{s:"A second finding concerns the timing of sleep relative to learning.",z:"第二个发现涉及睡眠相对于学习的时机。"},
+{s:"Students who slept within three hours of studying retained considerably more.",z:"在学习后三小时内睡觉的学生记住的内容明显更多。"},
+{s:"This suggests that napping may be more valuable than previously assumed.",z:"这表明小睡的价值可能比先前认为的更高。"},
+{s:"Nevertheless, researchers caution against extrapolating too far from these results.",z:"尽管如此，研究者提醒不要过度推论这些结果。"}
+]},
+
+{id:"i6",cat:"ielts",lvl:2,title:"IELTS S1 · Reporting a Lost Item",zh:"雅思 Section 1：失物登记",
+desc:"生活服务对话，考拼写、地址、颜色与材质等细节信息。",
+lines:[
+{s:"Good afternoon, lost property office. How can I help?",z:"下午好，失物招领处。有什么可以帮您？"},
+{s:"Hi, I think I left my backpack on the number fourteen bus.",z:"你好，我好像把背包落在14路公交上了。"},
+{s:"Could I take a few details, please? When was this?",z:"请提供些信息。什么时候的事？"},
+{s:"Sometime this morning, around half past nine.",z:"今天上午，大概九点半。"},
+{s:"Right. Can you describe the bag for me?",z:"好。能描述一下包吗？"},
+{s:"It's a medium-sized navy blue rucksack with a red strap.",z:"是一个中号深蓝色双肩包，红色背带。",tip:"navy blue 是颜色考点，注意拼写"},
+{s:"And what was inside it, if you don't mind me asking?",z:"里面有什么东西，方便说吗？"},
+{s:"A laptop, a water bottle, and a grey woollen scarf.",z:"一台笔记本、一个水壶和一条灰色羊毛围巾。"},
+{s:"Was there any form of identification, a name tag perhaps?",z:"有没有任何身份标识，比如姓名牌？"},
+{s:"Yes, actually. There's a luggage tag with my surname, H-E-R-N-A-N-D-E-Z.",z:"有的。有个行李牌写着我的姓，H-E-R-N-A-N-D-E-Z。",tip:"Section 1 必考逐个字母拼写"},
+{s:"Thank you. We'll contact you within forty-eight hours if it's handed in.",z:"谢谢。如果有人上交，我们会在48小时内联系您。"}
+]},
+
+/* ================= 托福 TOEFL ================= */
+{id:"t1",cat:"toefl",lvl:2,title:"TOEFL Campus · Campus Job Inquiry",zh:"托福校园对话：咨询校内工作",
+desc:"校园服务场景对话，语速适中但含大量口语省略，练抓「问题—方案」结构。",
+lines:[
+{s:"Excuse me, I'm looking for the student employment office.",z:"打扰一下，我在找学生就业办公室。"},
+{s:"You found it. What can I do for you?",z:"你找到了。有什么可以帮你？",tip:"You found it 是地道口语：你找对地方了"},
+{s:"I was wondering if there are still any on-campus positions open.",z:"我想问一下校内岗位还有没有空缺。",tip:"I was wondering if… 委婉提问万能句"},
+{s:"There are a few. Are you looking for something in particular?",z:"还有几个。你有特别想做的吗？"},
+{s:"Ideally something in the library, since my schedule's pretty tight.",z:"最好是图书馆的，因为我课表挺满的。"},
+{s:"Let me check. — We still need someone at the circulation desk.",z:"我查一下。—— 借还书台还缺人。"},
+{s:"What would the hours be like?",z:"工作时间是怎样的？"},
+{s:"Mostly evenings, six to nine, plus one weekend shift.",z:"主要是晚上六点到九点，外加一个周末班。"},
+{s:"That actually works perfectly for me.",z:"这对我来说正合适。"},
+{s:"Great. You'll need to fill out a W-4 and bring your student ID.",z:"很好。你需要填一张 W-4 表格，并带上学生证。"},
+{s:"Is that the tax form? I don't have a social security number yet.",z:"那是税务表格吗？我还没有社安号。"},
+{s:"You can apply for one through our office. Takes about two weeks.",z:"你可以通过我们办公室申请。大概要两周。"}
+]},
+
+{id:"t2",cat:"toefl",lvl:2,title:"TOEFL Campus · Registration Problem",zh:"托福校园对话：选课出问题",
+desc:"典型「学生遇到困难—工作人员给出解决办法」结构，考点在细节与语气。",
+lines:[
+{s:"Hi, I'm trying to register for History 201, but the system won't let me.",z:"你好，我想选历史201，但系统不让。",tip:"won't let me 中 t 失爆，let me 连读成 lemme"},
+{s:"Let me take a look. Can I have your student number?",z:"我看看。能给我你的学号吗？"},
+{s:"Sure, it's eight-four-two-one-six.",z:"当然，84216。"},
+{s:"Ah, I see the problem. There's a prerequisite you haven't completed.",z:"啊，我看到问题了。有一门先修课你还没修完。"},
+{s:"Really? I took History 101 last spring.",z:"真的吗？我去年春天修过历史101。"},
+{s:"It shows as incomplete on your transcript.",z:"成绩单上显示的是「未完成」。"},
+{s:"That's odd. I definitely passed that class.",z:"奇怪。我肯定过了那门课。"},
+{s:"Did you ever submit your final paper? That was a requirement.",z:"你交了期末论文吗？那是要求之一。"},
+{s:"Oh no… I turned it in late, didn't I?",z:"糟糕……我交晚了，是吧？",tip:"turn in 连读；didn't I 中 t 吞掉"},
+{s:"If it was after the deadline, the professor may have marked it incomplete.",z:"如果超过截止日期，教授可能给了 incomplete。"},
+{s:"So what are my options here?",z:"那我现在有什么办法？",tip:"What are my options 是解决型对话的高频句"},
+{s:"You can file a grade change request with the department.",z:"你可以向院系提交成绩更改申请。"},
+{s:"And in the meantime, I can't register?",z:"那在此期间我就不能选课了？"},
+{s:"Correct. Get the form in this week and you should be fine.",z:"对。这周把表交了就没问题。"}
+]},
+
+{id:"t3",cat:"toefl",lvl:3,title:"TOEFL Lecture · Animal Camouflage",zh:"托福讲座：动物的伪装",
+desc:"生物学讲座：定义—分类—举例—例外。学术词汇密集，语速 150+ 词/分钟。",
+lines:[
+{s:"Today we're continuing our discussion of predator-prey relationships.",z:"今天继续讨论捕食者与猎物的关系。"},
+{s:"Specifically, I want to focus on camouflage.",z:"具体来说，我想聚焦伪装。"},
+{s:"Camouflage is any adaptation that allows an animal to avoid detection.",z:"伪装是使动物避免被发现的一种适应特征。"},
+{s:"Now, there are several distinct strategies, and I'll outline four of them.",z:"有几种不同的策略，我概述其中四种。"},
+{s:"The first is background matching, where an animal resembles its surroundings.",z:"第一种是背景匹配，即动物与周围环境相似。"},
+{s:"Think of a moth resting on tree bark.",z:"比如停在树皮上的蛾子。"},
+{s:"The second is disruptive coloration — patterns that break up the body outline.",z:"第二种是干扰色——打乱身体轮廓的图案。"},
+{s:"A zebra's stripes are the classic textbook example.",z:"斑马的条纹就是经典的教科书例子。"},
+{s:"The third is countershading: darker on top, lighter underneath.",z:"第三种是反遮蔽：上深下浅。"},
+{s:"This cancels out the shadow and flattens the animal's appearance.",z:"这抵消了阴影，使动物的外形看起来更扁平。"},
+{s:"Now, here's the interesting part — camouflage isn't always about hiding.",z:"有意思的是——伪装并不总是为了躲藏。"},
+{s:"Some predators use it to get closer to their prey.",z:"一些捕食者用它来接近猎物。"},
+{s:"And that, as we'll see next time, raises some tricky questions about cost.",z:"而这一点，我们下次会看到，引出了一些关于代价的棘手问题。"}
+]},
+
+{id:"t4",cat:"toefl",lvl:3,title:"TOEFL Lecture · The Dust Bowl",zh:"托福讲座：美国黑色风暴事件",
+desc:"历史类讲座，含年代与因果链，练听时间顺序逻辑。",
+lines:[
+{s:"Let's turn to the Dust Bowl, one of the worst ecological disasters in American history.",z:"我们来看黑色风暴，美国历史上最严重的生态灾难之一。"},
+{s:"The term refers to a series of dust storms in the 1930s.",z:"该词指20世纪30年代的一系列沙尘暴。"},
+{s:"The affected region covered parts of Oklahoma, Texas, Kansas and Colorado.",z:"受影响地区包括俄克拉荷马、得克萨斯、堪萨斯和科罗拉多的部分地区。"},
+{s:"Now, what caused it? Well, two factors combined catastrophically.",z:"是什么导致的？两个因素灾难性地叠加在一起。"},
+{s:"First, decades of intensive wheat farming had removed the native grasses.",z:"首先，几十年的密集小麦种植清除了原生草类。"},
+{s:"Those grasses had deep root systems that held the topsoil in place.",z:"这些草有深根系，能固住表层土壤。"},
+{s:"Second, a severe and prolonged drought struck the region in 1930.",z:"其次，1930年该地区遭遇了严重而持久的干旱。"},
+{s:"Without roots to anchor it, the dry topsoil simply blew away.",z:"没有根系固着，干燥的表土就随风飘走了。"},
+{s:"On what became known as Black Sunday, April the fourteenth, 1935…",z:"在后来被称为「黑色星期天」的1935年4月14日……"},
+{s:"…a massive storm darkened the sky as far east as New York City.",z:"……一场巨大的风暴使天空变暗，最远影响到东部的纽约。"},
+{s:"Roughly three and a half million people migrated, many to California.",z:"大约三百五十万人迁徙，许多人去了加州。"},
+{s:"So the lesson here — and this is what I want you to take away…",z:"所以这里的教训——也是我希望你们记住的……",tip:"take away = 记住的要点，讲座高频"},
+{s:"…is that human land use can amplify a natural event into a catastrophe.",z:"……是人类的土地利用能把自然事件放大成灾难。"}
+]},
+
+{id:"t5",cat:"toefl",lvl:3,title:"TOEFL Lecture · Classical Conditioning",zh:"托福讲座：经典条件反射",
+desc:"心理学讲座：术语—实验—结论。托福听力最常考的学科之一。",
+lines:[
+{s:"Last class we defined learning as a relatively permanent change in behavior.",z:"上节课我们把学习定义为行为的相对持久的改变。"},
+{s:"Today I want to introduce a specific mechanism: classical conditioning.",z:"今天我要介绍一种具体机制：经典条件反射。"},
+{s:"The classic study, of course, is Pavlov and his dogs.",z:"经典研究当然是巴甫洛夫和他的狗。"},
+{s:"Pavlov noticed that the dogs began salivating before the food arrived.",z:"巴甫洛夫注意到，狗在食物送达之前就开始分泌唾液。"},
+{s:"They were responding to the sound of the lab assistant's footsteps.",z:"它们是在对实验室助理的脚步声做出反应。"},
+{s:"So he designed a controlled experiment using a bell.",z:"于是他设计了一个使用铃声的对照实验。"},
+{s:"The food is what we call the unconditioned stimulus.",z:"食物是我们所说的非条件刺激。"},
+{s:"Salivating in response to food is the unconditioned response.",z:"对食物分泌唾液是非条件反应。"},
+{s:"The bell, initially, is a neutral stimulus — it means nothing to the dog.",z:"铃声最初是中性刺激——对狗没有意义。"},
+{s:"But after repeated pairings, the bell alone triggers salivation.",z:"但经过反复配对后，铃声单独也能引发唾液分泌。"},
+{s:"At that point, the bell has become a conditioned stimulus.",z:"此时，铃声就变成了条件刺激。"},
+{s:"Now, here's a question for you: what happens if you keep ringing the bell…",z:"现在有个问题：如果你一直摇铃却不给食物……",tip:"教授自问自答是托福考点信号，后面必出重点"},
+{s:"…but stop presenting the food? Think about that for Thursday.",z:"……却不再给食物，会怎样？周四前想想这个问题。"}
+]},
+
+{id:"t6",cat:"toefl",lvl:3,title:"TOEFL Lecture · Glaciers and Landscapes",zh:"托福讲座：冰川与地貌",
+desc:"地质学讲座：过程描述 + 对比结构，注意 however / in contrast 等转折信号。",
+lines:[
+{s:"OK, so we've been talking about how rivers shape the landscape.",z:"好，我们一直在讲河流如何塑造地貌。"},
+{s:"Today I want to compare that with the work of glaciers.",z:"今天我想把它和冰川的作用做个对比。"},
+{s:"Both are agents of erosion, but they operate very differently.",z:"两者都是侵蚀营力，但运作方式非常不同。"},
+{s:"A river cuts a V-shaped valley — narrow at the bottom, wide at the top.",z:"河流切割出 V 形谷——底部窄、顶部宽。"},
+{s:"A glacier, in contrast, carves a U-shaped valley.",z:"相反，冰川侵蚀出 U 形谷。"},
+{s:"It's broader, with steep, almost vertical walls.",z:"它更宽阔，谷壁陡峭，近乎垂直。"},
+{s:"Why the difference? It comes down to how the ice moves.",z:"为什么有差异？要归结于冰的移动方式。"},
+{s:"Unlike water, a glacier doesn't just flow downhill — it scrapes sideways too.",z:"与水不同，冰川不只是向下流——它还向两侧刮擦。"},
+{s:"As it moves, it plucks rocks from the valley walls and carries them along.",z:"移动时，它从谷壁拔起岩石并带走。"},
+{s:"These embedded rocks act like sandpaper, polishing the bedrock underneath.",z:"这些嵌入的岩石像砂纸一样，磨光下方的基岩。"},
+{s:"Another telltale sign is the presence of moraines.",z:"另一个标志性迹象是冰碛的存在。"},
+{s:"Those are ridges of debris deposited at the glacier's edge.",z:"那是在冰川边缘堆积的碎石垄。"},
+{s:"And if you see those, you're looking at a landscape shaped by ice.",z:"如果你看到这些，那你面对的就是由冰塑造的地貌。"}
+]}
+];
