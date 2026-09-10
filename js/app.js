@@ -1178,15 +1178,32 @@ async function gistReq(method, path, body) {
   if (!res.ok) { const t = await res.text().catch(() => ''); throw new Error('GitHub API ' + res.status + ' ' + t.slice(0, 160)); }
   return res.json();
 }
+/* 自动发现已存在的同步 gist：本机没 ID 时，列出账号下所有 gist，
+   找到含 fluency7-state.json 的那个并采用（多端共用同一个，避免各建各的）*/
+async function gistDiscover() {
+  if (!SYNC.token || SYNC.gistId) return SYNC.gistId;
+  const list = await gistReq('GET', '/gists?per_page=100');
+  const mine = (list || []).filter(g => g.files && g.files[GIST_FILE]);
+  if (!mine.length) return '';
+  mine.sort((a, b) => new Date(b.updated_at || 0) - new Date(a.updated_at || 0));
+  SYNC.gistId = mine[0].id; saveSync();
+  return SYNC.gistId;
+}
+async function safeDiscover() { try { await gistDiscover(); } catch (e) { console.error('[sync] discover', e); } }
+
 async function gistPull() {
-  if (!SYNC.token || !SYNC.gistId) return null;
-  const g = await gistReq('GET', '/gists/' + SYNC.gistId);
+  if (!SYNC.token) return null;
+  if (!SYNC.gistId) await safeDiscover();     // 首次：先找别人已建的仓库
+  if (!SYNC.gistId) return null;
+  let g;
+  try { g = await gistReq('GET', '/gists/' + SYNC.gistId); }
+  catch (e) {
+    // ID 失效（仓库被删/不属于本账号）→ 清空后重新发现
+    if (/404/.test(e.message)) { SYNC.gistId = ''; saveSync(); await safeDiscover(); }
+    return null;
+  }
   const f = g.files && g.files[GIST_FILE];
   if (!f || !f.content) return null;
-  // 另一端已同步过 gistId，则本机也学到（自动共享同一个 gist）
-  if (g.files[GIST_FILE] && f.content) {
-    try { const rj = JSON.parse(f.content); if (rj && rj.__gist && !SYNC.gistId) { SYNC.gistId = rj.__gist; saveSync(); } } catch (e) { }
-  }
   return JSON.parse(f.content);
 }
 /* ---- 局域网直连后端（零账号，数据不出本地网络）---- */
@@ -1310,6 +1327,17 @@ $('#syncUseLocal').onclick = () => {
   SYNC.lanHost = location.host; saveSync(); updateSyncUI(); toast('已填入：' + location.host);
 };
 $('#syncNow').onclick = () => syncNow(true).then(updateSyncUI);
+$('#syncFind').onclick = async () => {
+  if (!SYNC.token) { toast('请先填写 GitHub Token'); return; }
+  toast('查找中…');
+  SYNC.gistId = ''; saveSync();                    // 强制重新查找
+  try {
+    const id = await gistDiscover();
+    if (id) { toast('已找到同步仓库 ' + id.slice(0, 8) + '…'); await syncNow(true); }
+    else toast('未找到已有仓库，将新建');
+  } catch (e) { toast('查找失败：' + e.message); }
+  updateSyncUI();
+};
 $('#syncAutoBtn').onclick = () => {
   SYNC.enabled = !SYNC.enabled; saveSync(); updateSyncUI();
   if (SYNC.enabled) syncNow(true).then(updateSyncUI);
